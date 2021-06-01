@@ -9,7 +9,7 @@ module.exports = function({ IdeaController }){
     router.post("", [AuthMiddleware], IdeaController.create);
     router.patch("/:ideaId", IdeaController.update);
     router.delete("/:ideaId", [AuthMiddleware], IdeaController.delete);
-    router.post(":ideaId/upvote", [AuthMiddleware], IdeaController.upvoteIdea);
-    router.post(":ideaId/downvote",[AuthMiddleware], IdeaController.downvoteIdea);
+    router.post("/:ideaId/upvote", [AuthMiddleware], IdeaController.upvoteIdea);
+    router.post("/:ideaId/downvote",[AuthMiddleware], IdeaController.downvoteIdea);
     return router;
 }

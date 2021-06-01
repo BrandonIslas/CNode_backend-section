@@ -26,7 +26,7 @@ class CommentService extends BaseService {
     return comments;
   }
 
-  async createComment(comment, ideaId) {
+  async createComment(comment, ideaId, userId) {
     if (!ideaId) {
       const error = new Error();
       error.status = 400;
@@ -40,7 +40,7 @@ class CommentService extends BaseService {
       error.message = "Idea does not exist";
       throw error;
     }
-    const createdComment = await _commentRepository.create(comment);
+    const createdComment = await _commentRepository.create({...comment, author: userId});
     idea.comments.push(createdComment);
 
     return await _ideaRepository.update(ideaId, { comments: idea.comments });
